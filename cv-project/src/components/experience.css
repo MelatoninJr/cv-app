@@ -1,0 +1,50 @@
+.experiencecontainer {
+
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    
+}
+
+.experiencetitle {
+
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 22px;
+    margin: 12px;
+}
+
+.experienceformcontainer {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: 16px;
+
+    gap: 12px;
+}
+input {
+    width: 300px;
+}
+
+.column-one,
+.column-two {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    
+}
+
+textarea {
+    width: 70%;
+    height: 100px;
+
+}
+
