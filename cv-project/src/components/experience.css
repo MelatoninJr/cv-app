@@ -3,13 +3,13 @@
     height: 30vh;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 18px;
     
 }
 
 .experiencetitle {
 
-    height: 30%;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,3 +48,20 @@ textarea {
 
 }
 
+.conone{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.contwo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.column-three {
+    width: 100%;
+}
