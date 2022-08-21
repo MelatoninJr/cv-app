@@ -57,7 +57,8 @@ class App extends Component {
       educationArray: this.state.educationArray.concat(new Constructor()),
 
   }))
-  console.log(this.state.educationArray[0])
+  console.log(this.state.educationArray)
+  console.log(this.state.educationArray[0].id)
   }
 
 
@@ -119,7 +120,7 @@ class App extends Component {
          </div>
           <button onClick={this.onClickBtn} type='button'>Click Me</button>
                   {this.state.educationArray.map((value, index) => (
-                  <div key={index} >{<Education   />}</div>
+                  <div key={index} >{<Education  educationid={this.state.educationArray[index].id} />}</div>
                   ))}
           <div className='sepcontainer'><div className='seperate'></div></div>
           <div className='experiencetitle'>
