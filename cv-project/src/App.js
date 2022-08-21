@@ -13,7 +13,15 @@ const Constructor =  function() {
   this.finish = ''
   this.id = uuid()
 }
-const initialEducation = new Constructor()
+
+const ExperienceConstructor = function() {
+  this.companyname = ''
+  this.positiontitle = ''
+  this.startdate = ''
+  this.enddate = ''
+  this.description = ''
+  this.id = uuid()
+}
 
 class App extends Component {
 
@@ -29,19 +37,7 @@ class App extends Component {
         email: ''
       }],
       educationArray: [new Constructor()],
-      experienceArray: [1],
-
-      
-
-  
-
-      experienceInformation: {
-
-        company: '',
-        tite: '',
-        start: '',
-        finish: ''
-      }
+      experienceArray: [new ExperienceConstructor()],
 
     }
 
@@ -50,7 +46,10 @@ class App extends Component {
     this.onClickBtnTwo = this.onClickBtnTwo.bind(this);
     this.onChangeTest = this.onChangeTest.bind(this)
     this.onClickEducationFunction = this.onClickEducationFunction.bind(this)
+    this.onClickExperienceFunction = this.onClickExperienceFunction.bind(this)
+    this.submit = this.submit.bind(this)
   }
+
 
   onClickBtn() {
   
@@ -66,9 +65,10 @@ class App extends Component {
 
   onClickBtnTwo() {
     this.setState(previousState => ({
-      experienceArray: this.state.experienceArray.concat(1)
+      experienceArray: this.state.experienceArray.concat(new ExperienceConstructor())
 
   }))
+  console.log(this.state.experienceArray)
   }
   /*changetester(e) {
     console.log(e.target)
@@ -101,6 +101,35 @@ class App extends Component {
 
    }  
 
+   onClickExperienceFunction(e) {
+    const name = e.target.name
+    const value = e.target.value
+    console.log(e.target.value)
+    this.setState(( state, props ) => {
+      
+      return {
+
+        ...state,
+
+        experienceArray: state.experienceArray.map((element, index) => {
+
+          if(state.experienceArray[index].id === e.target.getAttribute('experienceid')) {
+            return {...element, [name]: value}
+          }
+          
+          return element;
+  
+        }
+        
+        )
+      }
+    });
+    console.log(this.state.experienceArray)
+
+
+
+   }
+
  onChangeTest(e) {
   const name = e.target.name
   const value = e.target.value
@@ -131,6 +160,14 @@ class App extends Component {
 
  }  
 
+ submit(e) {
+
+  const select = document.querySelector('#generalform')
+  select.remove()
+  console.log(this.state)
+
+ }
+
   render() {
  
   return (
@@ -157,7 +194,7 @@ class App extends Component {
              </div>
              <button onClick={this.onClickBtnTwo} type='button'>Click Me</button>
                   {this.state.experienceArray.map((value, index) => (
-                  <div key={index}>{<Experience />}</div>
+                  <div key={index}>{<Experience experienceid={this.state.experienceArray[index].id} onClickExperience={this.onClickExperienceFunction} />}</div>
                   ))}
             <div className='sepcontainer'><div className='seperate'></div></div>
             <button onClick={this.edit} type='button'>Edit</button>
