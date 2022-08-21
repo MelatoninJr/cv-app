@@ -3,7 +3,7 @@ import './App.css';
 import General from './components/general'
 import Education from './components/education'
 import Experience from './components/experience'
-import React, { Component } from 'react'
+import React, { Component, useState, useEffect} from 'react'
 import uuid from 'react-uuid'
 
 const Constructor =  function() {
@@ -49,6 +49,7 @@ class App extends Component {
     this.onClickBtn = this.onClickBtn.bind(this);
     this.onClickBtnTwo = this.onClickBtnTwo.bind(this);
     this.onChangeTest = this.onChangeTest.bind(this)
+    this.onClickEducationFunction = this.onClickEducationFunction.bind(this)
   }
 
   onClickBtn() {
@@ -57,6 +58,7 @@ class App extends Component {
       educationArray: this.state.educationArray.concat(new Constructor()),
 
   }))
+  
   console.log(this.state.educationArray)
   console.log(this.state.educationArray[0].id)
   }
@@ -73,10 +75,37 @@ class App extends Component {
     console.log(this.state.educationArray)
   }*/
 
+  onClickEducationFunction(e) {
+    const name = e.target.name
+    const value = e.target.value
+
+    this.setState(( state, props ) => {
+      
+      return {
+
+        ...state,
+
+        educationArray: state.educationArray.map((element, index) => {
+
+          if(state.educationArray[index].id === e.target.getAttribute('educationid')) {
+            return {...element, [name]: value}
+          }
+          
+          return element;
+  
+        }
+        
+        )
+      }
+    });
+
+   }  
+
  onChangeTest(e) {
   const name = e.target.name
   const value = e.target.value
   console.log(this.state.generalArray)
+  
 
   this.setState(( state, props ) => {
 
@@ -120,7 +149,7 @@ class App extends Component {
          </div>
           <button onClick={this.onClickBtn} type='button'>Click Me</button>
                   {this.state.educationArray.map((value, index) => (
-                  <div key={index} >{<Education  educationid={this.state.educationArray[index].id} />}</div>
+                  <div key={index} >{<Education  educationid={this.state.educationArray[index].id} onClickEducation={this.onClickEducationFunction} />}</div>
                   ))}
           <div className='sepcontainer'><div className='seperate'></div></div>
           <div className='experiencetitle'>
