@@ -41,9 +41,9 @@ class Education extends Component {
          <div className='educationformcontainer'>
             <div className='column-one'>
             <label htmlFor='schoolname'>School Name</label>
-            <input type='text' id='schoolname' name='schoolname' defaultValue='' onChange={this.firstChange}></input>
+            <input type='text' id='schoolname' name='schoolname' defaultValue='' educationuuid={this.props.educationuuid}></input>
             <label htmlFor='fieldname'>Field of Study</label>
-            <input type='text' id='fieldname' name='fieldname' defaultValue='' onChange={this.secondChange}></input>
+            <input type='text' id='fieldname' name='fieldname' defaultValue='' ></input>
             </div>
             <div className='column-two'>
             <label htmlFor='startdate'>Start Date</label>

@@ -22,23 +22,18 @@ class App extends Component {
 
 
     this.state = {
-      generalArray: [1],
-      educationArray: [1],
+      generalArray: [{
+        fname: '',
+        lname: '',
+        phone: '',
+        email: ''
+      }],
+      educationArray: [new Constructor()],
       experienceArray: [1],
 
       
-      generalInformation: {
-      general:{
-        firstname: '',
-        lastname: '',
-        phone: '',
-        email: ''
-      },
 
-    },
-      educationInformation: [
-        new Constructor()
-      ],
+  
 
       experienceInformation: {
 
@@ -57,12 +52,12 @@ class App extends Component {
   }
 
   onClickBtn() {
-
+  
     this.setState(previousState => ({
       educationArray: this.state.educationArray.concat(new Constructor()),
-      educationInformation: this.state.educationInformation.concat(new Constructor())
-  }))
 
+  }))
+  console.log(this.state.educationArray[0])
   }
 
 
@@ -72,19 +67,38 @@ class App extends Component {
 
   }))
   }
+  /*changetester(e) {
+    console.log(e.target)
+    console.log(this.state.educationArray)
+  }*/
 
  onChangeTest(e) {
-  console.log(e.target.id)
-  console.log(e)
-  console.log(e.target)
-  console.log(e.target.value)
-  const nameone = e.target.name
-  console.log(this.state.educationArray.map((a, b) => (a)))
-  console.log(this.state.educationInformation.nameone)
-  this.setState({
-    
+  const name = e.target.name
+  const value = e.target.value
+  console.log(this.state.generalArray)
+
+  this.setState(( state, props ) => {
+
+    return {
+      // leave the rest of state as is...
+      ...state,
+      // but update the generalArray element at
+      //   the particular index
+      generalArray: state.generalArray.map((element, index) => {
+        if(index===0) {
+          return {...element, [name]: value}
+        }
+        
+        return element;
+
+
+      }
+        // a function in here to update just
+        //   the one element you want.
+      )
+    };
   })
-  console.log(this.state.educationInformation)
+
  }  
 
   render() {
@@ -96,15 +110,16 @@ class App extends Component {
         <div className='generaltitle'>
                     General Information
                  </div>
-                  <General />
-  
+                 
+                  <General onClick={this.onChangeTest} uuid={uuid()}/>
+                  
           <div className='sepcontainer'><div className='seperate'></div></div>
           <div className='educationtitle'>
             Education Information
          </div>
           <button onClick={this.onClickBtn} type='button'>Click Me</button>
                   {this.state.educationArray.map((value, index) => (
-                  <div key={index} onChange={this.onChangeTest}>{<Education  />}</div>
+                  <div key={index} >{<Education   />}</div>
                   ))}
           <div className='sepcontainer'><div className='seperate'></div></div>
           <div className='experiencetitle'>
@@ -120,7 +135,10 @@ class App extends Component {
           </form>
         </div>
     </div>
+    
+
   );
+  console.log(this.state.generalArray)
 }
 
 }
