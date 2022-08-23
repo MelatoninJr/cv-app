@@ -65,3 +65,36 @@ textarea {
 .column-three {
     width: 100%;
 }
+
+
+
+.experienceformcontainertwo {
+
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    font-weight: bolder;
+
+}
+
+.headertwo {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.headerthree {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 300;
+    padding-top: 14px;
+}

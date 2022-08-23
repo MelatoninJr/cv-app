@@ -40,3 +40,34 @@ input {
     align-items: flex-start;
     
 }
+
+ul,
+li {
+    list-style: none;
+}
+.generalcontainertwo {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.firstname {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    font-size: 24px;
+    font-weight: bolder;
+
+}
+
+.phone {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    font-size: 14px;
+    font-weight: 300;
+ 
+
+}

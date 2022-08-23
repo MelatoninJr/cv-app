@@ -3,6 +3,7 @@ import './App.css';
 import General from './components/general'
 import Education from './components/education'
 import Experience from './components/experience'
+import SubmitPreview from './components/submitpreview'
 import React, { Component, useState, useEffect} from 'react'
 import uuid from 'react-uuid'
 
@@ -38,6 +39,8 @@ class App extends Component {
       }],
       educationArray: [new Constructor()],
       experienceArray: [new ExperienceConstructor()],
+      submitArray: [],
+      statusValue: false
 
     }
 
@@ -48,6 +51,10 @@ class App extends Component {
     this.onClickEducationFunction = this.onClickEducationFunction.bind(this)
     this.onClickExperienceFunction = this.onClickExperienceFunction.bind(this)
     this.submit = this.submit.bind(this)
+    this.edit = this.edit.bind(this)
+  
+    //this.dataTest = this.dataTest.bind(this)
+
   }
 
 
@@ -162,23 +169,55 @@ class App extends Component {
 
  submit(e) {
 
-  const select = document.querySelector('#generalform')
-  select.remove()
-  console.log(this.state)
+  if(this.state.statusValue === true) {
+    window.print()
+  }
 
+  this.setState(previousState => ({
+    statusValue: true
+  }))
+
+  console.log(this.state)
+  /*this.setState(prevState => ({
+    submitArray: prevState.submitArray.concat(1)
+    //submitArray: [...prevState.submitArray, 1]
+  }))
+  select.remove()*/
+  console.log(this.state.submitArray)
  }
+ edit(e) {
+
+  if(this.state.statusValue === true) {
+    this.setState(prev => ({
+      statusValue: false
+    }))
+  }else{return}
+ }
+
+
+
+
+
+
+
 
   render() {
  
   return (
     <div className="App">
         <div className='Container'>
+          <div className='submit'>
+        {this.state.submitArray.map((value, index) => (
+                  <div key={index} >{<SubmitPreview  data={this.state} />}</div>
+                  ))}
+                  </div>
         <form id='generalform'>
+    
         <div className='generaltitle'>
                     General Information
                  </div>
-                 
-                  <General onClick={this.onChangeTest} uuid={uuid()}/>
+
+                  <General onClick={this.onChangeTest} uuid={uuid()} data={this.state} />
                   
           <div className='sepcontainer'><div className='seperate'></div></div>
           <div className='educationtitle'>
@@ -186,7 +225,7 @@ class App extends Component {
          </div>
           <button onClick={this.onClickBtn} type='button'>Click Me</button>
                   {this.state.educationArray.map((value, index) => (
-                  <div key={index} >{<Education  educationid={this.state.educationArray[index].id} onClickEducation={this.onClickEducationFunction} />}</div>
+                  <div key={index} >{<Education  educationid={this.state.educationArray[index].id} indexnumber={index} onClickEducation={this.onClickEducationFunction} data={this.state} firstchange={this.firstchange}     />}</div>
                   ))}
           <div className='sepcontainer'><div className='seperate'></div></div>
           <div className='experiencetitle'>
@@ -194,7 +233,7 @@ class App extends Component {
              </div>
              <button onClick={this.onClickBtnTwo} type='button'>Click Me</button>
                   {this.state.experienceArray.map((value, index) => (
-                  <div key={index}>{<Experience experienceid={this.state.experienceArray[index].id} onClickExperience={this.onClickExperienceFunction} />}</div>
+                  <div key={index}>{<Experience experienceid={this.state.experienceArray[index].id} onClickExperience={this.onClickExperienceFunction} data={this.state} indexnumber={index} onClickBtnTwo={this.onClickBtnTwo} />}</div>
                   ))}
             <div className='sepcontainer'><div className='seperate'></div></div>
             <button onClick={this.edit} type='button'>Edit</button>

@@ -40,3 +40,38 @@ input {
     align-items: flex-start;
     
 }
+
+.educationcontainertwo {
+
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.school,
+.field {
+
+    font-size: 24px;
+    font-weight: bolder;
+
+}
+
+.header {
+
+    display: flex;
+    justify-content: space-between;
+}
+
+li,
+ul {
+    list-style: none;
+}
+
+.headertwo {
+    font-size: 14px;
+    font-weight: 300;
+    display: flex;
+    justify-content: space-between;
+
+
+}

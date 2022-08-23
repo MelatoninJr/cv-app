@@ -46,14 +46,11 @@
 }
 
 #root {
-  border: 1px solid blue;
   display: flex;
   height: 100vh;
 }
 
 .App {
-
-  border: 2px solid red;
   flex-grow: 1;
   display: flex;
   justify-content: center;
@@ -79,4 +76,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+#hello {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
 }
