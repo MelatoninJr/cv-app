@@ -40,7 +40,8 @@ class App extends Component {
       educationArray: [new Constructor()],
       experienceArray: [new ExperienceConstructor()],
       submitArray: [],
-      statusValue: false
+      statusValue: false,
+      buttonArray: [1]
 
     }
 
@@ -52,6 +53,7 @@ class App extends Component {
     this.onClickExperienceFunction = this.onClickExperienceFunction.bind(this)
     this.submit = this.submit.bind(this)
     this.edit = this.edit.bind(this)
+    this.buttontest = this.buttontest.bind(this)
   
     //this.dataTest = this.dataTest.bind(this)
 
@@ -172,10 +174,15 @@ class App extends Component {
   if(this.state.statusValue === true) {
     window.print()
   }
+  else if(this.state.statusValue === false) {
+    this.setState(previousState => ({
+      statusValue: true,
+      buttonArray: []
+    }))
+    
 
-  this.setState(previousState => ({
-    statusValue: true
-  }))
+  }
+
 
   console.log(this.state)
   /*this.setState(prevState => ({
@@ -189,15 +196,24 @@ class App extends Component {
 
   if(this.state.statusValue === true) {
     this.setState(prev => ({
-      statusValue: false
+      statusValue: false,
+      buttonArray: this.state.buttonArray.concat(1)
     }))
+
   }else{return}
  }
 
 
 
 
-
+buttontest(e) {
+  if(this.state.statusValue === false) {
+    return(<button onClick={this.onClickBtn} type='button'>Click Me</button>)
+  }else if(this.state.statusValue === true) {
+    console.log('its false')
+    return
+  }
+}
 
 
 
@@ -223,7 +239,11 @@ class App extends Component {
           <div className='educationtitle'>
             Education Information
          </div>
-          <button onClick={this.onClickBtn} type='button'>Click Me</button>
+         {this.state.buttonArray.map((value, index) => (
+                  <div key={index} >{<button onClick={this.onClickBtn} type='button'>+</button> }</div>
+                  ))}
+         
+          {this.buttontest}
                   {this.state.educationArray.map((value, index) => (
                   <div key={index} >{<Education  educationid={this.state.educationArray[index].id} indexnumber={index} onClickEducation={this.onClickEducationFunction} data={this.state} firstchange={this.firstchange}     />}</div>
                   ))}
@@ -231,7 +251,10 @@ class App extends Component {
           <div className='experiencetitle'>
                 Work Experience
              </div>
-             <button onClick={this.onClickBtnTwo} type='button'>Click Me</button>
+             {this.state.buttonArray.map((value, index) => (
+                  <div key={index} >{<button onClick={this.onClickBtnTwo} type='button'>+</button> }</div>
+                  ))}
+
                   {this.state.experienceArray.map((value, index) => (
                   <div key={index}>{<Experience experienceid={this.state.experienceArray[index].id} onClickExperience={this.onClickExperienceFunction} data={this.state} indexnumber={index} onClickBtnTwo={this.onClickBtnTwo} />}</div>
                   ))}
